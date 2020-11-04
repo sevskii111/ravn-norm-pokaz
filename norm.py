@@ -33,8 +33,6 @@ mc, gc = m(xs), g(xs)
 pempc = pemp(xs, np.min(xs), np.max(xs), c)
 ptheorc = ptheor(mean, std, np.min(xs), np.max(xs), c)
 
-print(pempc, ptheorc)
-
 xi = Xi(pempc, ptheorc)
 
 print(mean, std, mc, gc, xi)
