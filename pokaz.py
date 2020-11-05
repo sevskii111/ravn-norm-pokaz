@@ -10,11 +10,11 @@ def ptheor(lam, a, b, m):
     for i in np.arange(m):
         left = a + l * i
         right = a + l * (i + 1)
-        p[i] = scipy.stats.expon.cdf(right, 0, lam) - scipy.stats.expon.cdf(left, 0, lam)
+        p[i] = scipy.stats.expon.cdf(right, 0, 1 / lam) - scipy.stats.expon.cdf(left, 0, 1 / lam)
     return p
 
 def x(lam, n):
-    return np.random.exponential(lam, n)
+    return np.random.exponential(1 / lam, n)
 
 def M(lam):
     return lam ** -1
