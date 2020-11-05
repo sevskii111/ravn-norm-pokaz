@@ -1,3 +1,4 @@
+import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 from shared import *
@@ -6,7 +7,7 @@ def ptheor(a, b, m):
     return np.full(m, 1 / m)
 
 def x(a, b, r):
-    return a + r * ((a * b - 1) / a)
+    return np.random.uniform(a, b, r)
 
 def M(a, b):
     return (a + b) / 2
@@ -14,24 +15,26 @@ def M(a, b):
 def D(a, b):
     return (b - a) ** 2 / 12
 
-N = int(input("N:"))
 c = int(input('m:'))
-a = int(input('a:'))
-b = int(input('b:'))
+a = float(input('a:'))
+b = float(input('b:'))
 
-rs = np.random.rand(N)
+df = pd.DataFrame(columns=['N', 'M', 'm', '|M - m|', 'D', 'g', '|D - g|', 'δ‎‎‎'])
 
-xs = x(a, b, rs)
+while True:
+    N = int(input("N:"))
 
-Mc, Dc, mc, gc = M(a, b), D(a, b), m(xs), g(xs)
+    xs = x(a, b, N)
 
-pempc = pemp(xs, a, b, c)
-ptheorc = ptheor(a, b, c)
+    print(xs[:q])
 
-xi = Xi(pempc, ptheorc)
+    mean, std, mc, gc = M(a, b), D(a, b), m(xs), g(xs)
 
-print(Mc, Dc, mc, gc, xi)
+    pempc = pemp(xs, a, b, c)
+    ptheorc = ptheor(a, b, c)
 
-plt.plot(pempc)
-plt.plot(ptheorc)
-plt.show()
+    xi = Xi(pempc, ptheorc)
+
+    df.loc[len(df)] = [N, mean, mc, np.abs(mean - mc), std, gc, np.abs(std - gc), xi]
+
+    print(df)

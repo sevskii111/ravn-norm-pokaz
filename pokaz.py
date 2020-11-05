@@ -4,27 +4,26 @@ import scipy.stats
 import numpy as np
 from shared import *
 
-def ptheor(mean, std, a, b, m):
+def ptheor(lam, a, b, m):
     l = (b - a) / m
     p = np.zeros(m)
     for i in np.arange(m):
         left = a + l * i
         right = a + l * (i + 1)
-        p[i] = scipy.stats.norm.cdf(right, mean, std) - scipy.stats.norm.cdf(left, mean, std)
+        p[i] = scipy.stats.expon.cdf(right, 0, lam) - scipy.stats.expon.cdf(left, 0, lam)
     return p
 
-def x(mean, std, n):
-    return np.random.normal(mean, std, n)
+def x(lam, n):
+    return np.random.exponential(lam, n)
 
-def M(a, b):
-    return (a + b) / 2
+def M(lam):
+    return lam ** -1
 
-def D(a, b):
-    return (b - a) ** 2 / 12
+def D(lam):
+    return lam ** -2
 
 c = int(input("m:"))
-mean = float(input('M:'))
-std = float(input('σ:'))
+lam = float(input('λ:'))
 
 df = pd.DataFrame(columns=['N', 'M', 'm', '|M - m|', 'D', 'g', '|D - g|', 'δ‎‎‎'])
 
@@ -32,14 +31,15 @@ while True:
 
     N = int(input("N:"))
 
-    xs = x(mean, std, N)
+    xs = x(lam, N)
 
     print(xs[:q])
 
+    mean, std = M(lam), D(lam)
     mc, gc = m(xs), g(xs)
 
     pempc = pemp(xs, np.min(xs), np.max(xs), c)
-    ptheorc = ptheor(mean, std, np.min(xs), np.max(xs), c)
+    ptheorc = ptheor(lam, np.min(xs), np.max(xs), c)
 
     xi = Xi(pempc, ptheorc)
 

@@ -1,5 +1,7 @@
 import numpy as np
     
+q = 20
+
 def m(xs):
     return xs.mean()
 
