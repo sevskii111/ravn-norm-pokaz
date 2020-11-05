@@ -24,7 +24,8 @@ def D(a, b):
 
 c = int(input("m:"))
 mean = float(input('M:'))
-std = float(input('σ:'))
+sigma = float(input('σ:'))
+std = sigma ** 2
 
 df = pd.DataFrame(columns=['N', 'M', 'm', '|M - m|', 'D', 'g', '|D - g|', 'δ'])
 
@@ -32,14 +33,14 @@ while True:
 
     N = int(input("N:"))
 
-    xs = x(mean, std, N)
+    xs = x(mean, sigma, N)
 
     print(xs[:q])
 
     mc, gc = m(xs), g(xs)
 
     pempc = pemp(xs, np.min(xs), np.max(xs), c)
-    ptheorc = ptheor(mean, std, np.min(xs), np.max(xs), c)
+    ptheorc = ptheor(mean, sigma, np.min(xs), np.max(xs), c)
 
     xi = Xi(pempc, ptheorc)
 
