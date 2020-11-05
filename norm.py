@@ -26,7 +26,7 @@ c = int(input("m:"))
 mean = float(input('M:'))
 std = float(input('σ:'))
 
-df = pd.DataFrame(columns=['N', 'M', 'm', '|M - m|', 'D', 'g', '|D - g|', 'δ‎‎‎'])
+df = pd.DataFrame(columns=['N', 'M', 'm', '|M - m|', 'D', 'g', '|D - g|', 'δ'])
 
 while True:
 

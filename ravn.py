@@ -19,7 +19,7 @@ c = int(input('m:'))
 a = float(input('a:'))
 b = float(input('b:'))
 
-df = pd.DataFrame(columns=['N', 'M', 'm', '|M - m|', 'D', 'g', '|D - g|', 'δ‎‎‎'])
+df = pd.DataFrame(columns=['N', 'M', 'm', '|M - m|', 'D', 'g', '|D - g|', 'δ'])
 
 while True:
     N = int(input("N:"))

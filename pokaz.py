@@ -25,7 +25,7 @@ def D(lam):
 c = int(input("m:"))
 lam = float(input('λ:'))
 
-df = pd.DataFrame(columns=['N', 'M', 'm', '|M - m|', 'D', 'g', '|D - g|', 'δ‎‎‎'])
+df = pd.DataFrame(columns=['N', 'M', 'm', '|M - m|', 'D', 'g', '|D - g|', 'δ'])
 
 while True:
 
